@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>1278</width>
+    <height>967</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1201</width>
-     <height>801</height>
+     <width>1280</width>
+     <height>968</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -163,6 +163,11 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>emailfield</tabstop>
+  <tabstop>passwordfield</tabstop>
+  <tabstop>login</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
