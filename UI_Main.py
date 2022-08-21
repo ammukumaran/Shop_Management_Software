@@ -85,7 +85,7 @@ class WelcomeScreen(QMainWindow, ui):
 
     def newCustTab(self):
         self.tabWidget.setCurrentIndex(2)
-        self.dtDOB.setDate(QDate.currentDate())
+        # self.dtDOB.setDate(QDate.currentDate())
 
     def customerSearch(self):
         self.navRec = 0
@@ -124,7 +124,6 @@ class WelcomeScreen(QMainWindow, ui):
                 self.lineApt.setText(self.custResult[0][2])
                 self.lineCity.setText(self.custResult[0][3])
                 self.recID=self.custResult[0][5]
-                print(type(self.recID), self.recID)
                 if self.custResult[0][4] != None:
                     self.dtDOB.setDate(QtCore.QDate.fromString(self.custResult[0][4], "yyyy-MM-d"))
                 else:
@@ -185,14 +184,12 @@ class WelcomeScreen(QMainWindow, ui):
         self.labelHomeRecord.clear()
         self.labelCustRecord.clear()
         self.recID = 0
-        print(self.recID)
 
     def cusRecLeft(self):
         if (self.navRec > 0):
             self.navRec -= 1
             self.toolbtnRight.setEnabled(True)
             self.toolbtnCustRight.setEnabled(True)
-            print(self.navRec, self.recCount)
         if self.navRec == 0:
             self.toolbtnLeft.setEnabled(False)
             self.toolbtnCustLeft.setEnabled(False)
@@ -208,7 +205,6 @@ class WelcomeScreen(QMainWindow, ui):
         self.labelHomeRecord.setText('Record ' + str(self.navRec + 1) + " of " + str(self.recCount))
         self.labelCustRecord.setText('Record ' + str(self.navRec + 1) + " of " + str(self.recCount))
         self.recID = self.custResult[self.navRec][5]
-        print(self.recID)
 
 
     def cusRecRight(self):
@@ -216,7 +212,6 @@ class WelcomeScreen(QMainWindow, ui):
             self.toolbtnLeft.setEnabled(True)
             self.toolbtnCustLeft.setEnabled(True)
             self.navRec += 1
-            print(self.navRec, self.recCount)
         if self.navRec == self.recCount - 1:
             self.toolbtnRight.setEnabled(False)
             self.toolbtnCustRight.setEnabled(False)
@@ -232,7 +227,6 @@ class WelcomeScreen(QMainWindow, ui):
         self.labelHomeRecord.setText('Record ' + str(self.navRec + 1) + " of " + str(self.recCount))
         self.labelCustRecord.setText('Record ' + str(self.navRec + 1) + " of " + str(self.recCount))
         self.recID = self.custResult[self.navRec][5]
-        print (self.recID)
 
     def addCustomerFunction(self):
         name = self.lineName.text()
@@ -265,7 +259,6 @@ class WelcomeScreen(QMainWindow, ui):
                 if self.msg.clickedButton() is self.msg.button(QMessageBox.No):
                     flag=1
             if flag==0:
-                print (name,phone,apartment,city,dob)
                 user_info = [name,phone,apartment,city,dob]
                 self.mycursor.execute("INSERT INTO abcustomer (name,phone,apartment,city,dob) VALUES (%s,%s,%s,%s,%s)",
                                       user_info)
@@ -279,7 +272,6 @@ class WelcomeScreen(QMainWindow, ui):
         city = self.lineCity.text()
         dob = (self.dtDOB.date().toPyDate()).strftime('%Y-%m-%d')
         user_info = [name, phone, apartment, city, dob,self.recID]
-        print(user_info)
         self.msg.setIcon(QMessageBox.Warning)
         self.msg.setText("Are you sure you want to ")
         self.msg.setInformativeText("update?")
@@ -296,7 +288,6 @@ class WelcomeScreen(QMainWindow, ui):
             self.lblCustStatus.setText("Record modified successfully")
 
     def deleteCustomerFunction(self):
-        print(self.recID)
         self.msg.setIcon(QMessageBox.Warning)
         self.msg.setText("Are you sure you want to ")
         self.msg.setInformativeText("delete permanently?")
